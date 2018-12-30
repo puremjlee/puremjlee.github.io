@@ -1,3 +1,14 @@
+## Step 0. Prerequisite
+```
+$ ssh-keygen
+$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+Shutdown firewall
+```
+$ service firewalld stop
+$ service iptables stop
+```
+
 ## Step 1. Java Install
 java version "1.7.0_55"
 ```
@@ -66,7 +77,12 @@ export JAVA_HOME=/usr/local/jdk1.7.0_71
       <value>file:///home/hadoop/hadoopinfra/hdfs/datanode</value>
    </property>
 ```
+```
+$ mkdir -p /home/hadoop/hadoopinfra
+```
+
 **yarn-site.xml**
+```
    <property>
       <name>yarn.nodemanager.aux-services</name>
       <value>mapreduce_shuffle</value>
@@ -91,4 +107,60 @@ $ jps
 ```
 http://localhost:50070/
 http://localhost:8088/
+```
+## Step 4. Hive Install
+Hive version 2.3.4
+```
+$ cd /usr/local
+$ wget http://apache.tt.co.kr/hive/hive-2.3.4/apache-hive-2.3.4-bin.tar.gz
+$ tar xvfz apache-hive-2.3.4-bin.tar.gz
+$  mv apache-hive-2.3.4-bin /usr/local/hive
+```
+environment variable setting
+```
+export HIVE_HOME=/usr/local/hive
+export PATH=$PATH:$HIVE_HOME/bin
+export CLASSPATH=$CLASSPATH:/usr/local/hadoop/lib/*:.
+export CLASSPATH=$CLASSPATH:/usr/local/hadoop/share/hadoop/common/
+export CLASSPATH=$CLASSPATH:/usr/local/hive/lib/*:.
+export HIVE_CONF_DIR=$HIVE_HOME/conf
+```
+```
+$ source ~/.bashrc
+$ cd $HIVE_HOME/conf
+```
+**hive-env.sh**
+```
+export HADOOP_HOME=/usr/local/hadoop
+```
+**hive-site.xml**
+It's embedded derby setting as metastore.
+```
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:derby:metastore_db;create=true </value>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>org.apache.derby.jdbc.EmbeddedDriver</value>
+  </property>
+```
+## Step 5. Derby install
+Derby version 10.4.2.0
+```
+$ cd /usr/local
+$ wget http://archive.apache.org/dist/db/derby/db-derby-10.4.2.0/db-derby-10.4.2.0-bin.tar.gz
+$ tar zxfv db-derby-10.4.2.0-bin.tar.gz
+$ mv db-derby-10.4.2.0-bin /usr/local/derby
+```
+environment variable setting
+```
+export DERBY_INSTALL=/usr/local/derby
+export DERBY_HOME=/usr/local/derby
+export PATH=$PATH:$DERBY_HOME/bin
+export CLASSPATH=$CLASSPATH:$DERBY_HOME/lib/derby.jar:$DERBY_HOME/lib/derbytools.jar
+```
+```
+$ source ~/.bashrc
+$ mkdir $DERBY_HOME/data
 ```
