@@ -1,3 +1,8 @@
+---
+layout: post
+title: Hive Install Guide
+---
+
 ## Step 0. Prerequisite
 ```
 $ ssh-keygen
