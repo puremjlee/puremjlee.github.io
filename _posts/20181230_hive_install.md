@@ -164,3 +164,17 @@ export CLASSPATH=$CLASSPATH:$DERBY_HOME/lib/derby.jar:$DERBY_HOME/lib/derbytools
 $ source ~/.bashrc
 $ mkdir $DERBY_HOME/data
 ```
+## Step 6. Verifying Hive Install
+```
+$ hadoop fs -mkdir /tmp
+$ hadoop fs -mkdir /user
+$ hadoop fs -mkdir /user/hive
+$ hadoop fs -mkdir /user/hive/warehouse
+$ hadoop fs -chmod g+w /tmp
+$ hadoop fs -chmod g+w /user/hive
+$ hadoop fs -chmod g+w /user/hive/warehouse
+$ schematool -initSchema -dbType derby
+$ unset HADOOP_CLIENT_OPTS
+$ export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS -XX:MaxPermSize=512m"
+$ hive
+```
