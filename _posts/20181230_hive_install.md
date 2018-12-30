@@ -173,6 +173,7 @@ $ hadoop fs -mkdir /user/hive/warehouse
 $ hadoop fs -chmod g+w /tmp
 $ hadoop fs -chmod g+w /user/hive
 $ hadoop fs -chmod g+w /user/hive/warehouse
+($ rm -rf $HIVE_HOME/metastore_db)
 $ schematool -initSchema -dbType derby
 $ unset HADOOP_CLIENT_OPTS
 $ export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS -XX:MaxPermSize=512m"
