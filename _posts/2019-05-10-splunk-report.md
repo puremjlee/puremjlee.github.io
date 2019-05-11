@@ -37,4 +37,5 @@ summary indexing
 자원경합 시 우선순위: 실시간 모드(manually 스케줄링설정) > 연속모드(summary indexing) > 자동모드(report 가속)
 연속모드는 Splunk 가 누락을 체크, 실시간 모드는 skip
 
-
+**Dashboard**
+http://dev.splunk.com/webframework
