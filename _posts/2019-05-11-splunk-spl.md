@@ -164,6 +164,29 @@ sourcetype=linux_secure
 **subsearch**
 <br>
 Q: Find products that were sold both in Asia and Africa during the previous 2 days
+```
+sourcetype = vendor_sales VendorID >=2000
+[ search sourcetype = vendor_sales VendorID > 2000 AND VendorID < 9000
+   | dedup product_name
+   | fields product_name ] 
+| dedup product_name
+| table product_name
+```
+**join**
+```
+sourcetype = vendor_sales VendorID >=2000
+| join product_name
+[ search sourcetype = vendor_sales VendorID > 2000 AND VendorID < 9000 ]
+| dedup product_name
+| table product_name
+```
+- default는 inner join, type=outer 는 left outer join
+
+**lookup**
+```
+
+```
+
 
 
 
