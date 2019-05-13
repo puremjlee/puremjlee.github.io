@@ -160,8 +160,8 @@ sourcetype=linux_secure
 1. subsearch<br>
 2. join<br>
 3. lookup<br>
-4. append .... stats 구문<br>
-<br>
+4. append .... stats 구문<br><br>
+
 **subsearch**
 <br>
 Q: Find products that were sold both in Asia and Africa during the previous 2 days
