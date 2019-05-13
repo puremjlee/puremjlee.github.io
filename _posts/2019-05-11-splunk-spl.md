@@ -10,7 +10,6 @@ be specific<br>
 search terms: 대소문자 구분안함 / field: 대소문자 구분<br>
 
 ## 1.Basic Search
-<br>
 **table**
 ```
 sourcetype = access_combined 
@@ -152,7 +151,7 @@ Q: How many invalid event accured by host
 sourcetype=linux_secure 
 | stats count(eval(host="www1")) as w1, count(eval(host="www2")) as w2, count(eval(host="www3")) as w3
 ```
-- avialbe functions: tostring, round, if...
+- avialbe functions: tostring, round, if, etc
 
 ##2.Advanced Search
 복합검색종류
@@ -184,9 +183,19 @@ sourcetype = vendor_sales VendorID >=2000
 
 **lookup**
 ```
-
+sourcetype=access_combined 
+| stats count by status, action 
+| lookup http_status.csv code as status
 ```
-
+**append...stats..**
+Q: Compare the number of password failures for known users vs. unknown users over the last 7 days.
+```
+sourcetype=linux_secure "failed password" NOT user=nobody
+| timechart count as know_users
+| append [ search sourcetype=linux_secure "failed password" user=nobody
+| timechart count as unkonw_users ]
+| stats max(*) by _time
+```
 
 
 
