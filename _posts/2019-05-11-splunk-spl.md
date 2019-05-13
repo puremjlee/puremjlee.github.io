@@ -199,6 +199,7 @@ sourcetype=linux_secure "failed password" NOT user=nobody
 | stats max(*) by _time
 ```
 **eventstats**
+<br>
 Q: Display the products that are losing more sales than the average during the last 24 hours.
 
 ```
@@ -210,6 +211,7 @@ sourcetype=access_combined action=remove
 | table product_name, delta
 ```
 **streamstats**
+<br>
 Q: Display a moving average of bytes over previous 5 events.
 ```
 sourcetype=access_combined
@@ -226,4 +228,13 @@ sourcetype=linux_secure fail*
 | sort –count
 | streamstats count as ip_count by user
 ```
-
+**xyseries**
+<br>
+Q: Display yesterday’s hourly volume in MB for each webserver.
+```
+sourcetype=access_combined
+| bin _time span=1h
+| stats sum(bytes) as totalBytes by _time, host
+| eval totalBytes = round(totalBytes/(1024*1024),2)."MB"
+| xyseries _time, host, totalBytes
+```
