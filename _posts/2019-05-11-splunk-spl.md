@@ -134,7 +134,7 @@ sourcetype=cisco_wsa_squid
 | timechart count by usage
 ```
 - options: span
-<br>
+
 Q: How much retail revenue did we receive from each product during the last 24 hours?
 ```
 sourcetype=vendor_sales 
