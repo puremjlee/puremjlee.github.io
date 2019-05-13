@@ -155,11 +155,11 @@ sourcetype=linux_secure
 
 ## 2.Advanced Search
 <br>
-복합검색종류
-1. subsearch
-2. join
-3. lookup
-4. append .... stats 구문
+복합검색종류<br>
+1. subsearch<br>
+2. join<br>
+3. lookup<br>
+4. append .... stats 구문<br>
 
 **subsearch**
 <br>
@@ -198,7 +198,32 @@ sourcetype=linux_secure "failed password" NOT user=nobody
 | timechart count as unkonw_users ]
 | stats max(*) by _time
 ```
+**eventstats**
+Q: Display the products that are losing more sales than the average during the last 24 hours.
 
-
-
+```
+sourcetype=access_combined action=remove
+| chart sum(price) as lostSales by product_name
+| eventstats avg(lostSales) as averageLoss
+| eval delta = (lostSales - averageLoss)
+| search delta > 0
+| table product_name, delta
+```
+**streamstats**
+Q: Display a moving average of bytes over previous 5 events.
+```
+sourcetype=access_combined
+| table _time, bytes
+| sort _time
+| streamstats avg(bytes) as averageBytes current=f window=5
+| eval Average = round(averageBytes)
+| table _time, bytes, Average
+```
+Q: Display the network failures by users and list the IPs, rank and number of failures.
+```
+sourcetype=linux_secure fail*
+| stats count by user, src_ip
+| sort –count
+| streamstats count as ip_count by user
+```
 
