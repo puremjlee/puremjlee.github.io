@@ -13,7 +13,7 @@ search terms: 대소문자 구분안함 / field: 대소문자 구분<br>
 <br>
 **table**
 ```
- sourcetype = access_combined 
+sourcetype = access_combined 
 | table clientip, action, productId, status
 ```
 
