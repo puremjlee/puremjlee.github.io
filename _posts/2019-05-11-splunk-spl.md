@@ -9,7 +9,7 @@ be specific<br>
 가능한 한 앞쪽에 filter<br>
 search terms: 대소문자 구분안함 / field: 대소문자 구분<br>
 
-#1.Basic Search
+## 1.Basic Search
 <br>
 **table**
 ```
@@ -124,7 +124,7 @@ Q: How many actions accured by host?
 sourcetype=access_combined 
 | chart count by host, action
 ```
-* options: useother, usenull, limit
+- options: useother, usenull, limit
 
 **timechart**
 <br>
@@ -133,7 +133,7 @@ Q: What is the overall usage trend for the last 24 hours?
 sourcetype=cisco_wsa_squid 
 | timechart count by usage
 ```
-* options: span
+- options: span
 <br>
 Q: How much retail revenue did we receive from each product during the last 24 hours?
 ```
@@ -152,5 +152,19 @@ Q: How many invalid event accured by host
 sourcetype=linux_secure 
 | stats count(eval(host="www1")) as w1, count(eval(host="www2")) as w2, count(eval(host="www3")) as w3
 ```
-** avialbe functions: tostring, round, if...
+- avialbe functions: tostring, round, if...
+
+##2.Advanced Search
+복합검색종류
+1. subsearch
+2. join
+3. lookup
+4. append .... stats 구문
+
+**subsearch**
+<br>
+Q: Find products that were sold both in Asia and Africa during the previous 2 days
+
+
+
 
