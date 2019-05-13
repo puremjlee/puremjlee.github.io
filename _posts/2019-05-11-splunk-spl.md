@@ -9,7 +9,7 @@ be specific<br>
 가능한 한 앞쪽에 filter<br>
 search terms: 대소문자 구분안함 / field: 대소문자 구분<br>
 
-#.1.Basic Search
+#1.Basic Search
 <br>
 **table**
 ```
