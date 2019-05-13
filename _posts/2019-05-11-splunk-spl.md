@@ -140,6 +140,7 @@ sourcetype=vendor_sales
 | timechart sum(price) by product_name useother=f usenull=f
 ```
 **eval**
+<br>
 Q: What types of websites used the most bandwidth in megabytes during the previous month?
 ```
 sourcetype=cisco_wsa_squid
@@ -160,7 +161,7 @@ sourcetype=linux_secure
 2. join<br>
 3. lookup<br>
 4. append .... stats 구문<br>
-
+<br>
 **subsearch**
 <br>
 Q: Find products that were sold both in Asia and Africa during the previous 2 days
