@@ -9,6 +9,8 @@ be specific<br>
 가능한 한 앞쪽에 filter<br>
 search terms: 대소문자 구분안함 / field: 대소문자 구분<br>
 
+#.1.Basic Search
+<br>
 **table**
 ```
  sourcetype = access_combined 
@@ -117,4 +119,38 @@ sourcetype=linux_secure fail*
 
 **chart**
 <br>
-s
+Q: How many actions accured by host?
+```
+sourcetype=access_combined 
+| chart count by host, action
+```
+* options: useother, usenull, limit
+
+**timechart**
+<br>
+Q: What is the overall usage trend for the last 24 hours?
+```
+sourcetype=cisco_wsa_squid 
+| timechart count by usage
+```
+* options: span
+<br>
+Q: How much retail revenue did we receive from each product during the last 24 hours?
+```
+sourcetype=vendor_sales 
+| timechart sum(price) by product_name useother=f usenull=f
+```
+**eval**
+Q: What types of websites used the most bandwidth in megabytes during the previous month?
+```
+sourcetype=cisco_wsa_squid
+| stats sum(sc_bytes) as Bytes by usage 
+| eval bandwidth=Bytes/(1024*1024)
+```
+Q: How many invalid event accured by host
+```
+sourcetype=linux_secure 
+| stats count(eval(host="www1")) as w1, count(eval(host="www2")) as w2, count(eval(host="www3")) as w3
+```
+** avialbe functions: tostring, round, if...
+
