@@ -153,7 +153,8 @@ sourcetype=linux_secure
 ```
 - avialbe functions: tostring, round, if, etc
 
-##2.Advanced Search
+## 2.Advanced Search
+<br>
 복합검색종류
 1. subsearch
 2. join
@@ -188,6 +189,7 @@ sourcetype=access_combined
 | lookup http_status.csv code as status
 ```
 **append...stats..**
+<br>
 Q: Compare the number of password failures for known users vs. unknown users over the last 7 days.
 ```
 sourcetype=linux_secure "failed password" NOT user=nobody
