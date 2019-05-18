@@ -48,6 +48,9 @@ search head 의 distsearch.conf 우선순위 적용은 다음처럼
 [replicationWhitelist]
 [replicationSettings:refineConf]
 ```
+**parallel reduce search**
+indexer는 map, search head는 reduce를 담당하는 분산 검색 구조에서 search head 의 reduce job 일부를 indexer 레이어에서 처리하도록 하는 방법<br>
+indexer cluster / multi indexer 구조에 모두 적용 가능, 원리는 인덕서 일부를 parallel reduce 로 지정해서 reduce job을 수행시키는 것<br>
 
 
 
