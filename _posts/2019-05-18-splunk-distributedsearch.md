@@ -49,8 +49,13 @@ search head 의 distsearch.conf 우선순위 적용은 다음처럼
 [replicationSettings:refineConf]
 ```
 **parallel reduce search**
-indexer는 map, search head는 reduce를 담당하는 분산 검색 구조에서 search head 의 reduce job 일부를 indexer 레이어에서 처리하도록 하는 방법<br>
+indexer는 map, search head는 reduce를 담당하는 분산 검색 구조에서 search head 의 reduce job 일부를 indexer 레이어에서 처리하도록 하는 방법으로 high-cardinality searches 에 유리<br>
 indexer cluster / multi indexer 구조에 모두 적용 가능, 원리는 인덕서 일부를 intermediate reducers 로 지정해서 reduce job을 수행시키는 것<br>
+indexer cluster 라면 random으로 선택되도록 하는것이 이상적, defulat 는 전체 indexer 개수의 50% 4개가 max (limits.conf에서 수정가능)<br>
+multi indexer 에서는 dedicated indexer 를 명시<br>
+redistribute 커맨드 사용시 num_of_reducers 키워드 사용하면 limits.conf 오버라이드<br>
+intermediate reducer 에서 실행되는 동시 검색 수는 CPU 코어 갯수<br>
+
 
 
 
