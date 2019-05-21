@@ -57,5 +57,20 @@ redistribute 커맨드 사용시 num_of_reducers 키워드 사용하면 limits.c
 intermediate reducer 에서 실행되는 동시 검색 수는 CPU 코어 갯수<br>
 
 
+**동시검색수**
+how many historycal searches can be run concurrently?<br>
+2 core per CPU x 2 = 4 CPU cores<br>
+10(max_hist_searches) = 1(max_search_per_cpu) x 4(number_of_cpus) + 6(base_max_searches)<br>
+
+how many real-time searches can be run concurrently?<br>
+10(max_rt_searches) = 1(max_rt_search_multiplier) x 10(max_hist_searches)<br>
+
+how many scheduled searches can be run concurrently?<br>
+max_searches_perc = 50<br>
+5(max_hist_scheduled_searches) = 50%(max_searches_perc) x 10(max_hist_searches)<br>
+5(max_rt_scheduled_searches) = 50%(max_searches_perc) x 10(max_rt_searches)<br>
+
+
+
 
 
