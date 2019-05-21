@@ -75,7 +75,7 @@ How many auto summarization(Report Acceleration/DataModel Acceleration) searches
 auto_summary_perc = 50<br>
 6(max_auto_hist_summary_search) = 12(max_hist_scheduled_searches) x 50%(auto_summary_perc)<br>
 6(max_auto_rt_summary_search) = 12(max_rt_scheduled_searches) x 50%(auto_summary_perc)<br>
+```
+| rest /services/server/status/limits/search-concurrency
 
-
-
-
+```
