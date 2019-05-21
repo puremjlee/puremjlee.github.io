@@ -79,3 +79,10 @@ auto_summary_perc = 50<br>
 | rest /services/server/status/limits/search-concurrency
 
 ```
+```
+$ lscpu | grep -E '^Thread|^Core|^Socket|^CPU\('
+CPU(s):                32
+Thread(s) per core:    2
+Core(s) per socket:    8
+Socket(s):             2
+```
