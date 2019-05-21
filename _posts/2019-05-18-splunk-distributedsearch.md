@@ -58,6 +58,7 @@ intermediate reducer 에서 실행되는 동시 검색 수는 CPU 코어 갯수<
 
 
 **동시검색수**
+<br>
 how many historycal searches can be run concurrently?<br>
 2 core per CPU x 2 = 4 CPU cores<br>
 10(max_hist_searches) = 1(max_search_per_cpu) x 4(number_of_cpus) + 6(base_max_searches)<br>
